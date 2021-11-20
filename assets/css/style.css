@@ -10,19 +10,16 @@
     font-size: 18px;
     color: white;
 }
-/* .dark{
+.dark{
     background-color: #25273c !important;
     color: white;
 }
 .light{
     background-color: white !important;
     color: #25273c;
-} */
-
-.change{
-    background-color: #25273c;
-    color: white;
 }
+
+
 main {
     display: flex;
     flex-direction: column;

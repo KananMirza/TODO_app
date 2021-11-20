@@ -37,9 +37,8 @@ const changeMode = () => {
         document.getElementsByClassName('content')[0].style.backgroundColor = '#fafafa';
 
         for (let i = 0; i <= Card.content.length * 3 + 5; i++) {
-            document.getElementsByClassName('change')[i].style.backgroundColor = "white ";
-            document.getElementsByClassName('change')[i].style.color = "#25273c";
-
+            document.getElementsByClassName('change')[i].classList.add('light')
+            document.getElementsByClassName('change')[i].classList.remove('dark')
         }
         count++
         console.log('gunduz')
@@ -48,8 +47,9 @@ const changeMode = () => {
         document.getElementsByClassName('hero')[0].style.backgroundImage = "url('../images/bg-desktop-dark.jpg')";
         document.getElementsByClassName('content')[0].style.backgroundColor = '#161722'
         for (let i = 0; i <= Card.content.length * 3 + 5; i++) {
-            document.getElementsByClassName('change')[i].style.backgroundColor = "#25273c";
-            document.getElementsByClassName('change')[i].style.color = "white ";
+            document.getElementsByClassName('change')[i].classList.remove('light');
+            document.getElementsByClassName('change')[i].classList.add('dark');
+
 
         }
         count++
@@ -88,9 +88,9 @@ function viewTodo() {
         <div class="todo_content change">
              `
         if (Card.status[i] == 0) {
-            content += `  <a href="#modal" onclick="viewEdit(${i})">  <p class="todo_text delete  change">${Card.content[i]}</p></a>`
+            content += `  <a href="#modal" onclick="viewEdit(${i})">  <p class="todo_text delete change">${Card.content[i]}</p></a>`
         } else {
-            content += `    <a href="#modal" onclick="viewEdit(${i})"><p class="todo_text  change ">${Card.content[i]}</p> </a>`
+            content += `    <a href="#modal" onclick="viewEdit(${i})"><p class="todo_text change ">${Card.content[i]}</p> </a>`
         }
         content += ` <img sty src="images/icon-cross.svg" alt="cross" onclick="deleteItem(${i})">
         </div>
@@ -98,10 +98,27 @@ function viewTodo() {
     </div>`
 
     }
+    
     document.getElementById('count').innerText = `${Card.content.length} item`
     document.getElementsByClassName('todo_list')[0].innerHTML = content;
+    checkClass()
 
+}
 
+function checkClass(){
+    let Card = JSON.parse(localStorage.usercard);
+    if (count % 2 == 0) {
+        for (let i = 0; i <= Card.content.length * 3+5; i++) {
+            document.getElementsByClassName('change')[i].classList.remove('light');
+            document.getElementsByClassName('change')[i].classList.add('dark');
+            
+        }
+    }else{
+        for (let i = 0; i <= Card.content.length * 3+5; i++) {
+            document.getElementsByClassName('change')[i].classList.add('light')
+            document.getElementsByClassName('change')[i].classList.remove('dark')
+    }
+}
 }
 
 function deleteItem(id) {
@@ -135,17 +152,18 @@ function additem() {
     let input = document.getElementsByClassName('write')[0].value;
     let Card = JSON.parse(localStorage.usercard);
 if(input ==""){
-    swal("Error! Value is null");
+    
 }else{
     Card.content.push(input);
     Card.status.push(1);
 }
     
-    swal("Good job!", "Added file!", "success");
+   
     input = "";
     localStorage.usercard = JSON.stringify(Card);
     viewTodo()
-
+    swal("Good job!", "Added file!", "success");
+    clearinput();
 }
 
 function clearinput() {
@@ -170,9 +188,11 @@ function clearitem() {
                 
                 for (let i = 0; i < Card.content.length; i++) {
                     if (document.getElementsByClassName('check')[i].getAttribute('checked')) {
-                        Card.content.splice(i,1)
-                        Card.status.splice(i,1)
+                        Card.content.splice(i,1);
+                        Card.status.splice(i,1);
+                        i=-1;
                     }
+                    
                 }
                
                 
@@ -269,7 +289,6 @@ function updateitem() {
     Card.status[id] = document.getElementById('select').value
     console.log(document.getElementById('select').value)
     localStorage.usercard = JSON.stringify(Card);
-    swal("Good job!", "Change Success!", "success");
     viewTodo();
-
+    swal("Good job!", "Change Success!", "success");
 }
