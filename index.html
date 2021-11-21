@@ -17,18 +17,18 @@
 
             <div class="title">
                 <h1>T O D O</h1>
-                <img id="mode" src="./images/icon-sun.svg" alt="hero" onclick="changeMode()">
+                <img id="mode" src="" alt="hero" onclick="changeMode()">
             </div>
 
             <div class="article">
-                <div class="checkbox dark change">
+                <div class="checkbox  change">
                     <div>
                         <img src="./images/icon-check.svg" alt="check" >
                     </div>
                 </div>
-                <form class="text dark change" >
-                    <input class="write dark change" onfocus="clearinput()" type="text" name="" value="">
-                    <input type="submit" onclick="additem()" style="visibility: hidden;">
+                <form class="text  change" onsubmit="additem()">
+                    <input class="write  change" type="text" name="" value="">
+                    <input type="submit"  style="visibility: hidden;">
                 </form>
         </section>
 
@@ -40,7 +40,7 @@
 
 
                 </div>
-                <div class="todo_footer dark change">
+                <div class="todo_footer change">
                     <div class="footer_left">
                         <p id="count"></p>
                     </div>
@@ -53,7 +53,7 @@
                         <p class="clear" >Clear completed</p>
                     </div>
                 </div>
-                <div class="res_footer dark change">
+                <div class="res_footer change">
                     <p class="all" onclick="viewTodo()">All</p>
                     <p class="active" onclick="active()">Active</p>
                     <p class="completed" onclick="completed()">Completed</p>
@@ -71,15 +71,10 @@
             <h2>Edit</h2>
             <a class="close" href="#">&times;</a>
             <input hidden id="" class="hidden">
-            <div class="text dark change">
-                <input class="write dark change" type="text" name="" value="">
+            <div class="text dark ">
+                <input class="write  dark" type="text" name="" value="">
             </div>
-            <div>
-                <select name="" id="select" value="" >
-                    
-                </select>
-            </div>
-            <button onclick="updateitem()" class="dark change">Update</button>
+            <button onclick="updateitem()" class="dark">Update</button>
         </div>
     </div>
 
