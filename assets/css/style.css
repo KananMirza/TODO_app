@@ -230,7 +230,8 @@ del {
     padding-top: 10px;
     cursor: pointer;
 }
-.delete{
+
+.x{
     display: none;
 }
 
@@ -361,7 +362,7 @@ del {
       .popup{
         width: 70%;
       }
-      .delete{
+      .x{
         display: inline;
     }
 }
@@ -393,7 +394,7 @@ del {
       .res_footer{
           display: flex;
       }
-      .delete{
+      .x{
         display: inline;
     }
 }

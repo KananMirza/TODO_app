@@ -72,7 +72,7 @@ function viewTodo() {
     let Card = JSON.parse(localStorage.usercard);
     let content = '';
     for (let i = 0; i < Card.content.length; i++) {
-        content += `<div class="todo_item" onmouseover="showDelete(${i})" onmouseout="hideDelete(${i})">
+        content += `<div class="todo_item" onmouseover="showX(${i})" onmouseout="hideX(${i})">
         <div class="todo_checkbox change">
             <div onclick="checkbox(${i})" class="check">
                 <img class="check_img" src="images/icon-check.svg" alt="check">
@@ -86,7 +86,7 @@ function viewTodo() {
         } else {
             content += `    <a href="#modal" onclick="viewEdit(${i})"><p class="todo_text change checked">${Card.content[i]}</p> </a>`
         }
-        content += ` <img class="delete" src="images/icon-cross.svg" alt="cross" onclick="deleteItem(${i})">
+        content += ` <img class="x" src="images/icon-cross.svg" alt="cross" onclick="deleteItem(${i})">
         </div>
     </div>`
     }
@@ -95,11 +95,11 @@ function viewTodo() {
     checkClass()
 }
 
-function showDelete(id){
-    document.getElementsByClassName('delete')[id].style.display = "inline"
+function showX(id){
+    document.getElementsByClassName('x')[id].style.display = "inline"
 }
-function hideDelete(id){
-    document.getElementsByClassName('delete')[id].style.display = "none"
+function hideX(id){
+    document.getElementsByClassName('x')[id].style.display = "none"
 }
 
 function checkClass() {
