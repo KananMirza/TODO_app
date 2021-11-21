@@ -230,6 +230,9 @@ del {
     padding-top: 10px;
     cursor: pointer;
 }
+.delete{
+    display: none;
+}
 
 /* For Popup*/
   .box {
@@ -358,6 +361,9 @@ del {
       .popup{
         width: 70%;
       }
+      .delete{
+        display: inline;
+    }
 }
 
 @media only screen and (max-width: 560px) {
@@ -387,7 +393,9 @@ del {
       .res_footer{
           display: flex;
       }
-
+      .delete{
+        display: inline;
+    }
 }
 
 

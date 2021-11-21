@@ -72,7 +72,7 @@ function viewTodo() {
     let Card = JSON.parse(localStorage.usercard);
     let content = '';
     for (let i = 0; i < Card.content.length; i++) {
-        content += `<div class="todo_item">
+        content += `<div class="todo_item" onmouseover="showDelete(${i})" onmouseout="hideDelete(${i})">
         <div class="todo_checkbox change">
             <div onclick="checkbox(${i})" class="check">
                 <img class="check_img" src="images/icon-check.svg" alt="check">
@@ -86,13 +86,20 @@ function viewTodo() {
         } else {
             content += `    <a href="#modal" onclick="viewEdit(${i})"><p class="todo_text change checked">${Card.content[i]}</p> </a>`
         }
-        content += ` <img sty src="images/icon-cross.svg" alt="cross" onclick="deleteItem(${i})">
+        content += ` <img class="delete" src="images/icon-cross.svg" alt="cross" onclick="deleteItem(${i})">
         </div>
     </div>`
     }
     document.getElementById('count').innerText = `${Card.content.length} item`
     document.getElementsByClassName('todo_list')[0].innerHTML = content;
     checkClass()
+}
+
+function showDelete(id){
+    document.getElementsByClassName('delete')[id].style.display = "inline"
+}
+function hideDelete(id){
+    document.getElementsByClassName('delete')[id].style.display = "none"
 }
 
 function checkClass() {
