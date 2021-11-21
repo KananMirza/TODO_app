@@ -13,7 +13,7 @@ function CheckUser() {
         var Card = {
             userId: localStorage.getItem('userId'),
             content: ["Complete Online Javascript Course", "Jog around the park 3x", "10 minutes meditation", "Read for 1 hour", "Pick up groceries", "Complete Todo app on FrontEnd Master"],
-            status: [0, 1, 1, 1, 1, 1],
+            status: [1, 1, 1, 1, 1, 1],
             darkmode: true,
         };
         localStorage.setItem('usercard', JSON.stringify(Card));
@@ -90,6 +90,7 @@ function viewTodo() {
              `
         if (Card.status[i] == 0) {
             content += `  <a href="#modal" onclick="viewEdit(${i})">  <p class="todo_text delete change checked">${Card.content[i]}</p></a>`
+            
         } else {
             content += `    <a href="#modal" onclick="viewEdit(${i})"><p class="todo_text change checked">${Card.content[i]}</p> </a>`
         }
@@ -121,6 +122,7 @@ function checkClass() {
         document.documentElement.style.setProperty("--bg","#fafafa");
         document.documentElement.style.setProperty("--text","#25273c");
     }
+    
 }
 
 function deleteItem(id) {
