@@ -3,7 +3,6 @@ onload = function () {
     viewTodo()
 }
 
-
 function CheckUser() {
     if (localStorage.getItem('userId') === null) {
         localStorage.setItem('userId', Unique());
@@ -17,16 +16,12 @@ function CheckUser() {
             darkmode: true,
         };
         localStorage.setItem('usercard', JSON.stringify(Card));
-       
     }
-
 }
-
 
 function Unique() {
     return '_' + Math.random().toString(35).substr(2, 9);
 }
-
 
 const changeMode = () => {
     let Card = JSON.parse(localStorage.usercard);
@@ -51,7 +46,6 @@ const changeMode = () => {
         Card.darkmode= true;
         localStorage.usercard = JSON.stringify(Card);
     }
-
 }
 
 
@@ -78,9 +72,7 @@ function viewTodo() {
     let Card = JSON.parse(localStorage.usercard);
     let content = '';
     for (let i = 0; i < Card.content.length; i++) {
-
         content += `<div class="todo_item">
-
         <div class="todo_checkbox change">
             <div onclick="checkbox(${i})" class="check">
                 <img class="check_img" src="images/icon-check.svg" alt="check">
@@ -98,11 +90,9 @@ function viewTodo() {
         </div>
     </div>`
     }
-
     document.getElementById('count').innerText = `${Card.content.length} item`
     document.getElementsByClassName('todo_list')[0].innerHTML = content;
     checkClass()
-
 }
 
 function checkClass() {
@@ -122,12 +112,10 @@ function checkClass() {
         document.documentElement.style.setProperty("--bg","#fafafa");
         document.documentElement.style.setProperty("--text","#25273c");
     }
-    
 }
 
 function deleteItem(id) {
     let Card = JSON.parse(localStorage.usercard);
-
     swal({
             title: "Are you sure?",
             text: "Once deleted, you will not be able to recover this file!",
@@ -192,9 +180,7 @@ function clearitem() {
                     if (Card.status[i]==0) {
                         Card.content.splice(i, 1);
                         Card.status.splice(i, 1); 
-                        i=-1;
-                        
-                        
+                        i=-1;  
                     }
                 }
                 localStorage.usercard = JSON.stringify(Card);
@@ -203,7 +189,6 @@ function clearitem() {
                 swal("Your file is safe!");
             }
         });
-
 }
 
 function active() {
@@ -214,18 +199,13 @@ function active() {
         if (Card.status[i] == 1) {
             number++;
             content += `<div class="todo_item">
-
             <div class="todo_checkbox  change">
-               
             </div>
             <div class="todo_content  change">
                   <a href="#modal" onclick="viewEdit(${i})"><p  class="todo_text  change">${Card.content[i]}</p></a>
-           
             </div>
         </div>`
         }
-
-
     }
     document.getElementById('count').innerText = `${number} item`
     document.getElementsByClassName('todo_list')[0].innerHTML = content;
@@ -235,24 +215,18 @@ function active() {
 function completed() {
     let number = 0;
     let Card = JSON.parse(localStorage.usercard);
-
     let content = '';
     for (let i = 0; i < Card.content.length; i++) {
         if (Card.status[i] == 0) {
             number++;
             content += `<div class="todo_item">
-
             <div class="todo_checkbox  change">
-                
             </div>
             <div class="todo_content  change">
             <a href="#modal" onclick="viewEdit(${i})"> <p class="todo_text delete  change">${Card.content[i]}</p></a>
-           
             </div>
         </div>`
         }
-
-
     }
     document.getElementById('count').innerText = `${number} item`
     document.getElementsByClassName('todo_list')[0].innerHTML = content;
@@ -263,16 +237,12 @@ function viewEdit(id) {
     document.getElementsByClassName('hidden')[0].id = id
     let Card = JSON.parse(localStorage.usercard);
     document.getElementsByClassName('write')[1].value = Card.content[id];
-  
 }
 
 function updateitem() {
-
-
     let id = document.getElementsByClassName('hidden')[0].id;
     let Card = JSON.parse(localStorage.usercard);
     Card.content[id] = document.getElementsByClassName('write')[1].value
-    Card.status[id] = document.getElementById('select').value
     localStorage.usercard = JSON.stringify(Card);
     viewTodo();
     swal("Good job!", "Change Success!", "success");
